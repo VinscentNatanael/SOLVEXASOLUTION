@@ -3,6 +3,13 @@ window.addEventListener("scroll", () => {
   document.getElementById("navbar")
     .classList.toggle("scrolled", window.scrollY > 50);
 });
+const toggle = document.getElementById("menu-toggle");
+const nav = document.getElementById("nav-menu");
+
+toggle.addEventListener("click", () => {
+  nav.classList.toggle("active");
+  toggle.classList.toggle("active");
+});
 
 // Animasi muncul
 const cards = document.querySelectorAll(".card");
