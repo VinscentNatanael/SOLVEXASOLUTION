@@ -30,21 +30,26 @@ body {
   margin: auto;
 }
 
+/* ========================= */
 /* NAVBAR */
+/* ========================= */
+
 header {
   position: fixed;
-  top: 0;
   width: 100%;
   height: 80px;
+  top: 0;
   z-index: 100;
   transition: 0.3s;
-}
-
-header.scrolled {
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.4);
   backdrop-filter: blur(10px);
 }
 
+header.scrolled {
+  background: rgba(0,0,0,0.8);
+}
+
+/* CONTAINER */
 .nav {
   height: 100%;
   display: flex;
@@ -56,7 +61,7 @@ header.scrolled {
 .brand-text {
   font-size: 28px;
   font-weight: 700;
-  background: linear-gradient(270deg,#00c6ff,#ff3cac);
+  background: linear-gradient(45deg,#00c6ff,#ff3cac);
   -webkit-background-clip: text;
   color: transparent;
 }
@@ -64,19 +69,94 @@ header.scrolled {
 /* MENU */
 nav {
   display: flex;
-  gap: 25px;
+  gap: 30px;
 }
 
 nav a {
   text-decoration: none;
   color: white;
+  position: relative;
+}
+
+/* hover underline */
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: #00c6ff;
+  left: 0;
+  bottom: -5px;
   transition: 0.3s;
 }
 
-nav a:hover {
-  color: #00c6ff;
+nav a:hover::after {
+  width: 100%;
 }
 
+/* ========================= */
+/* HAMBURGER */
+/* ========================= */
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: white;
+  margin: 4px 0;
+  transition: 0.3s;
+}
+
+/* animasi jadi X */
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px,5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px,-5px);
+}
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  nav {
+    position: fixed;
+    top: 80px;
+    right: -100%;
+    width: 100%;
+    height: calc(100vh - 80px);
+
+    background: #050816;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+
+    transition: 0.3s;
+  }
+
+  nav.active {
+    right: 0;
+  }
+
+}
 /* HERO */
 .hero {
   min-height: calc(100vh - 80px);
